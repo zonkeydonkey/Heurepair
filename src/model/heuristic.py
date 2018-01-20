@@ -4,6 +4,9 @@ from model import roads_list, max_road_demand
 from roads_map import budget
 
 
+max_obj_fun_res = 2000000000
+
+
 def objective_fun(x):
     cost = sum(
         (x[i] - roads_list[i][0]) * roads_list[i][1]
@@ -15,7 +18,7 @@ def objective_fun(x):
     )
 
     if cost > budget:
-        return sys.float_info.max / 10000
+        return max_obj_fun_res
     return result
 
 
