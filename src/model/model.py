@@ -33,6 +33,6 @@ def get_heuristic_factor():
     sum = 0
     for road in roads_list:
         sum += road[1]
-    return sum
+    return sum / len(roads_list)
 
 heuristic_factor = get_heuristic_factor()
