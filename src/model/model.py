@@ -27,3 +27,12 @@ create_max_road_demand_list = lambda: \
     ]
 
 max_road_demand = create_max_road_demand_list()
+
+
+def get_heuristic_factor():
+    sum = 0
+    for road in roads_list:
+        sum += road[1]
+    return sum
+
+heuristic_factor = get_heuristic_factor()

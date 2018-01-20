@@ -30,16 +30,16 @@ roads_map = {
             'city_a': "kielce",
             'city_b': "krakow",
             'capacity': 34.8,
-            'length': 200.4
+            'length': 26.4
         },
 
         {
             'city_a': "pcim",
             'city_b': "krakow",
             'capacity': 6.56,
-            'length': 356.2
+            'length': 30.2
         }
     ]
 }
 
-budget = 200
+budget = 100
