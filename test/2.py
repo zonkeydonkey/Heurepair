@@ -22,14 +22,6 @@ roads_map = {
                 'from': 12.3,
                 'to': 1.8
             }
-        },
-
-        {
-            'name': "koluszki",
-            'demand': {
-                'from': 56.9,
-                'to': 23.0
-            }
         }
     ],
 
@@ -46,27 +38,6 @@ roads_map = {
             'city_b': "krakow",
             'capacity': 6.56,
             'length': 30.2
-        },
-
-        {
-            'city_a': "pcim",
-            'city_b': "koluszki",
-            'capacity': 45.9,
-            'length': 24.8
-        },
-
-        {
-            'city_a': "kielce",
-            'city_b': "koluszki",
-            'capacity': 95.6,
-            'length': 20.6
-        },
-
-        {
-            'city_a': "kielce",
-            'city_b': "pcim",
-            'capacity': 63.0,
-            'length': 12.8
         }
     ]
 }
