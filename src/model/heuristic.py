@@ -1,15 +1,13 @@
 from scipy import special, optimize
-import model.map
+from model import roads_list
 
 
 objective_fun = lambda x: \
         sum (
-            i#x[i] - map['connections'][0]
+            (x[i] - roads_list[i][0]) * roads_list[i][1] - x[i]
             for i in range(len(x))
         )
 
 x0 = [2, 3]
 
-print (objective_fun (x0))
-
-print(model.map.roads_list)
+print(objective_fun(x0))

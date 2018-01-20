@@ -1,21 +1,27 @@
-map = {
+roads_map = {
     'cities': [
         {
             'name': "krakow",
-            'from': 23.4,
-            'to': 56.3
+            'demand': {
+                'from': 23.4,
+                'to': 56.3
+            }
         },
 
         {
             'name': "kielce",
-            'from': 45.3,
-            'to': 12.1
+            'demand': {
+                'from': 45.3,
+                'to': 12.1
+            }
         },
 
         {
             'name': "pcim",
-            'from': 12.3,
-            'to': 1.8
+            'demand': {
+                'from': 12.3,
+                'to': 1.8
+            }
         }
     ],
 
@@ -35,12 +41,3 @@ map = {
         }
     ]
 }
-
-create_roads_list = lambda: \
-    [
-        (road['capacity'], road['length'])
-        for road in list(map['roads'])
-    ]
-
-roads_list = create_roads_list()
-
