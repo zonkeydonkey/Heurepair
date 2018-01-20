@@ -36,8 +36,10 @@ roads_map = {
         {
             'city_a': "pcim",
             'city_b': "krakow",
-            'capacity': 4.56,
+            'capacity': 6.56,
             'length': 356.2
         }
     ]
 }
+
+budget = 200

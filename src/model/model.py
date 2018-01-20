@@ -16,3 +16,14 @@ create_roads_list = lambda: \
     ]
 
 roads_list = create_roads_list()
+
+create_max_road_demand_list = lambda: \
+    [
+        max(
+            min(find_city(road['city_a'])[0], find_city(road['city_b'])[1]),
+            min(find_city(road['city_b'])[1], find_city(road['city_a'])[0])
+        )
+        for road in list(roads_map['roads'])
+    ]
+
+max_road_demand = create_max_road_demand_list()
