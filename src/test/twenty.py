@@ -143,7 +143,7 @@ roads_map = {
             'capacity': 52.1,
             'length': 39.7
         },
-//
+
         {
             'city_a': "kielce",
             'city_b': "warszawa",
