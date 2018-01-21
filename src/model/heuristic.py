@@ -94,3 +94,11 @@ def run_heuristic_nth_times(map, budget, n, strategy):
     capacity_values /= n
     budget_usage = (cost_fun(capacity_values, roads_list) / budget) * 100
     return obj_fun_sum / n, budget_usage, get_fulfill_demand_factor(capacity_values, roads_list, max_road_demand)
+
+
+def run_heuristic_for_budgets(n, budgets, map):
+    result = []
+    for bud in budgets:
+        obj_fun = run_heuristic_nth_times(map, bud, n, 'rand2bin')
+        result.append(obj_fun)
+    return result

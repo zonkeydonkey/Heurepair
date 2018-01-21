@@ -4,7 +4,7 @@ import test.two as two_dim
 import test.five as five_dim
 import test.ten as ten_dim
 import test.twenty as twenty_dim
-from heuristic import run_heuristic_nth_times
+from heuristic import run_heuristic_nth_times, run_heuristic_for_budgets
 
 dimensions = [2, 5, 10, 20]
 
@@ -14,14 +14,6 @@ def run_heuristic_diff_evolution(n):
     result.append(run_heuristic_nth_times(five_dim.roads_map, five_dim.budget, n, 'rand2bin'))
     result.append(run_heuristic_nth_times(ten_dim.roads_map, ten_dim.budget, n, 'rand2bin'))
     result.append(run_heuristic_nth_times(twenty_dim.roads_map, twenty_dim.budget, n, 'rand2bin'))
-    return result
-
-
-def run_heuristic_for_budgets(n, budgets, map):
-    result = []
-    for bud in budgets:
-        obj_fun = run_heuristic_nth_times(map, bud, n, 'rand2bin')
-        result.append(obj_fun)
     return result
 
 
