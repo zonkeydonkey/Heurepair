@@ -1,9 +1,9 @@
 from scipy.optimize import differential_evolution
-from model import roads_list, max_road_demand, heuristic_factor
-from roads_map import budget
 
 
-max_obj_fun_res = 200000000000
+
+
+"""max_obj_fun_res = 20000000000
 
 
 def cost_fun(x):
@@ -66,9 +66,9 @@ def run_strategies(n):
     print("rand2bin: " + str(rand2bin) + ", cost: " + str(cost_fun(rand2bin)))
     print("rand1bin: " + str(rand1bin) + ", cost: " + str(cost_fun(rand1bin)))
 
-print(bounds)
-run_strategies(20)
-
-#result = differential_evolution(objective_fun, bounds)
-#print(result.x)
-#print(result.fun)
+def get_obj_func(n, strategy):
+    sum = 0
+    for i in range(n):
+        result = differential_evolution(objective_fun, bounds, (), strategy)
+        sum += result.func
+    return sum / n"""
