@@ -1,7 +1,7 @@
 import sys
 from scipy.optimize import differential_evolution
 from model import roads_list, max_road_demand
-from roads_map import budget
+from roads_map  import budget
 
 
 max_obj_fun_res = 2000000000
