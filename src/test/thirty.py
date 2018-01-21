@@ -70,7 +70,7 @@ roads_map = {
                 'from': 76.5,
                 'to': 189.3
             }
-        }
+        },
 
         {
             'name': "gdansk",
@@ -78,7 +78,7 @@ roads_map = {
                 'from': 156.3,
                 'to': 99.4
             }
-        }
+        },
 
         {
             'name': "olsztyn",
@@ -86,7 +86,7 @@ roads_map = {
                 'from': 43.2,
                 'to': 44.3
             }
-        }
+        },
 
         {
             'name': "ciechanow",
