@@ -70,7 +70,7 @@ roads_map = {
                 'from': 76.5,
                 'to': 189.3
             }
-        }
+        },
 
         {
             'name': "gdansk",
@@ -78,7 +78,7 @@ roads_map = {
                 'from': 156.3,
                 'to': 99.4
             }
-        }
+        },
 
         {
             'name': "olsztyn",
@@ -86,13 +86,29 @@ roads_map = {
                 'from': 43.2,
                 'to': 44.3
             }
-        }
+        },
 
         {
             'name': "ciechanow",
             'demand': {
                 'from': 39.5,
                 'to': 29.7
+            }
+        },
+
+        {
+            'name': "elk",
+            'demand': {
+                'from': 29.3,
+                'to': 13.6
+            }
+        },
+
+        {
+            'name': "modlin",
+            'demand': {
+                'from': 115.4,
+                'to': 39.2
             }
         }
     ],
@@ -322,6 +338,63 @@ roads_map = {
             'capacity': 39.9,
             'length': 115.3
         },
+
+        {
+            'city_a': "modlin",
+            'city_b': "olsztyn",
+            'capacity': 39.7,
+            'length': 35.6
+        },
+
+        {
+            'city_a': "ciechanow",
+            'city_b': 'modlin',
+            'capacity': 89.7,
+            'length': 15.6
+        },
+
+        {
+            'city_a': "elk",
+            'city_b': "ciechanow",
+            'capacity': 39.7,
+            'length': 19.7
+        },
+
+        {
+            'city_a': "elk",
+            'city_b': "sucha",
+            'capacity': 10.7,
+            'length': 105.0
+        },
+
+        {
+            'city_a': "elk",
+            'city_b': "pcim",
+            'capacity': 9.7,
+            'length': 5.6
+        },
+
+        {
+            'city_a': "elk",
+            'city_b': "gdansk",
+            'capacity': 107.4,
+            'length': 45.4
+        },
+
+        {
+            'city_a': "krakow",
+            'city_b': "elk",
+            'capacity': 33.9,
+            'length': 77.7
+        },
+
+        {
+            'city_a': "modlin",
+            'city_b': "krakow",
+            'capacity': 79.7,
+            'length': 80.2
+        }
+# 40
     ]
 }
 
