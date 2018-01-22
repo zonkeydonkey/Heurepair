@@ -1,6 +1,7 @@
 import sys
-from roads_map import *
 import copy
+import test.ten as map
+# from ten import *
 
 def metrics(map_custom, map_original):
     lenMap = len(map_custom['roads'])
@@ -24,7 +25,7 @@ def greedy(map_original):
         city_A=lengths[i]['city_a']
         city_B=lengths[i]['city_b']
 
-        #SYLWIA, trzeba wywalić potem ten comment: zakładam że poruszamy się w jednym kierunku. Moze to nie ma znaczenia, już nie wiem xD
+        # We move in one direction
         city_A_data=(item for item in map_original['cities'] if item["name"] == city_A).__next__()
         city_B_data=(item for item in map_original['cities'] if item["name"] == city_B).__next__()
 
@@ -34,7 +35,7 @@ def greedy(map_original):
         cap_between_cities=min(cap_of_city_A, cap_of_city_B)
         lengths[i]['cap']=cap_between_cities
 
-        if cur_expenses<budget and map_original['roads'][i]['capacity'] < cap_between_cities:
+        if cur_expenses<map.budget and map_original['roads'][i]['capacity'] < cap_between_cities:
             if (cap_between_cities > map_original['roads'][i]['capacity']):
                 newCapacity = (cap_between_cities - map_original['roads'][i]['capacity'])
                 price= newCapacity * lengths[i]['length']
@@ -44,6 +45,6 @@ def greedy(map_original):
                 print("Debug: after - ",lengths[i]['capacity'])
     return map_copy
 
-repaired_city = greedy(roads_map)
+repaired_city = greedy(map.roads_map)
 
-print("Chwila prawdy:",metrics(repaired_city,roads_map))
+print("Chwila prawdy:",metrics(repaired_city,map.roads_map))
