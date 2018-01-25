@@ -54,6 +54,14 @@ def greedy_bud(map_original,map_budget):
     x,bud=greedy_fun(map_original,map_budget)
     return bud
 
+def greedy_budg(budgets, map_original):
+    x=0
+    res = []
+    for bud in budgets:
+        x,bud_fun = greedy_fun(map_original, bud)
+        res.append(bud_fun)
+    return res
+
 repaired_city,budg = greedy_fun(map.roads_map,map.budget)
 
 print("Chwila prawdy:",metrics(repaired_city,map.roads_map))

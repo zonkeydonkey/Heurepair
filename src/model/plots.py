@@ -9,7 +9,7 @@ import test.fourty as fourty_dim
 import test.fifty as fifty_dim
 
 from heuristic import run_heuristic_nth_times, run_heuristic_for_budgets
-from greedy import greedy_bud
+from greedy import greedy_bud, greedy_budg
 
 dimensions = [2, 5, 10, 20, 30, 40, 50]
 
@@ -77,7 +77,7 @@ def plot_obj_fun_budget(n, start_budget, end_budget, delta_budget, map):
 def plot_budget_usage_budget(n, start_budget, end_budget, delta_budget, map):
     x_axis = np.arange(start_budget, end_budget, delta_budget)
     y_axis = [i[1] for i in run_heuristic_for_budgets(n, x_axis, map)]
-    y_axis_gr = [j for j in greedy_bud(map, x_axis)]
+    y_axis_gr = [j for j in greedy_budg(x_axis,map)]
     plt.plot(x_axis, y_axis)
     plt.plot(x_axis, y_axis_gr)
     plt.ylabel('zużycie budżetu')
@@ -97,5 +97,6 @@ def plot_fulfill_demand_factor_budget(n, start_budget, end_budget, delta_budget,
 # plot_budget_usage_dim(50)
 # plot_fulfill_demand_factor_dim(50)
 
-plot_fulfill_demand_factor_budget(10,100,150,5,ten_dim.roads_map)
-# plot_fulfill_demand_factor_budget(30,100,150,5,thirty_dim.roads_map)
+# plot_budget_usage_budget(10,100,170,5,ten_dim.roads_map)
+plot_budget_usage_budget(30,100,170,5,thirty_dim.roads_map)
+# plot_budget_usage_budget(50,100,150,5,fifty_dim.roads_map)
