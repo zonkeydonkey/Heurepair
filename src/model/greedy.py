@@ -15,11 +15,12 @@ def metrics(map_custom, map_original):
     return difference
 
 cur_expenses=0
-def greedy(map_original):
+def greedy_fun(map_original,map_budget):
     map_copy = copy.deepcopy(map_original)
     lengths = map_copy['roads']
     lengths = sorted(lengths, key=lambda k: k['length'])
     cur_expenses=0
+    used_budget=0
 
     for i in range(len(lengths)):
         city_A=lengths[i]['city_a']
@@ -35,7 +36,7 @@ def greedy(map_original):
         cap_between_cities=min(cap_of_city_A, cap_of_city_B)
         lengths[i]['cap']=cap_between_cities
 
-        if cur_expenses<map.budget and map_original['roads'][i]['capacity'] < cap_between_cities:
+        if cur_expenses<map_budget and map_original['roads'][i]['capacity'] < cap_between_cities:
             if (cap_between_cities > map_original['roads'][i]['capacity']):
                 newCapacity = (cap_between_cities - map_original['roads'][i]['capacity'])
                 price= newCapacity * lengths[i]['length']
@@ -43,8 +44,16 @@ def greedy(map_original):
                 lengths[i]['capacity'] = newCapacity
                 cur_expenses+=price
                 print("Debug: after - ",lengths[i]['capacity'])
-    return map_copy
 
-repaired_city = greedy(map.roads_map)
+    # used_budget=map_budget-cur_expenses
+    return map_copy, cur_expenses
+
+def greedy_bud(map_original,map_budget):
+    x=0
+    bud=0
+    x,bud=greedy_fun(map_original,map_budget)
+    return bud
+
+repaired_city,budg = greedy_fun(map.roads_map,map.budget)
 
 print("Chwila prawdy:",metrics(repaired_city,map.roads_map))
