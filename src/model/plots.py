@@ -77,7 +77,9 @@ def plot_obj_fun_budget(n, start_budget, end_budget, delta_budget, map):
 def plot_budget_usage_budget(n, start_budget, end_budget, delta_budget, map):
     x_axis = np.arange(start_budget, end_budget, delta_budget)
     y_axis = [i[1] for i in run_heuristic_for_budgets(n, x_axis, map)]
+    y_axis_gr = [j for j in greedy_bud(map, x_axis)]
     plt.plot(x_axis, y_axis)
+    plt.plot(x_axis, y_axis_gr)
     plt.ylabel('zużycie budżetu')
     plt.xlabel('budżet')
     plt.show()
@@ -92,8 +94,8 @@ def plot_fulfill_demand_factor_budget(n, start_budget, end_budget, delta_budget,
     plt.show()
 
 # plot_obj_fun_dim(50)
-plot_budget_usage_dim(50)
+# plot_budget_usage_dim(50)
 # plot_fulfill_demand_factor_dim(50)
 
-# plot_fulfill_demand_factor_budget(20,100,150,5,twenty_dim.roads_map)
-# plot_fulfill_demand_factor_budget(30,100,150,3,thirty_dim.roads_map)
+plot_fulfill_demand_factor_budget(10,100,150,5,ten_dim.roads_map)
+# plot_fulfill_demand_factor_budget(30,100,150,5,thirty_dim.roads_map)
