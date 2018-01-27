@@ -37,6 +37,17 @@ def run_greedy_bud():
 
     return result_bud
 
+def available():
+    available_bud = []
+    available_bud.append(two_dim.budget)
+    available_bud.append(five_dim.budget)
+    available_bud.append(ten_dim.budget)
+    available_bud.append(twenty_dim.budget)
+    available_bud.append(thirty_dim.budget)
+    available_bud.append(fourty_dim.budget)
+    available_bud.append(fifty_dim.budget)
+
+    return available_bud
 
 def plot_obj_fun_dim(n):
     obj_func_vals = [i[0] for i in run_heuristic_diff_evolution(n)]
@@ -49,8 +60,11 @@ def plot_obj_fun_dim(n):
 def plot_budget_usage_dim(n):
     obj_func_vals = [i[1] for i in run_heuristic_diff_evolution(n)]
     vals_for_greedy = [j for j in run_greedy_bud()]
+    available_budget = [k for k in available()]
     plt.plot(dimensions, obj_func_vals)
     plt.plot(dimensions, vals_for_greedy)
+    plt.plot(dimensions, available_budget)
+    plt.legend(['alg. ewolucji różnicowej','alg. zachłanny', 'dostępny budżet'])
     plt.ylabel('zużycie budżetu')
     plt.xlabel('wymiar problemu (ilość połączeń)')
     plt.show()
@@ -80,6 +94,7 @@ def plot_budget_usage_budget(n, start_budget, end_budget, delta_budget, map):
     y_axis_gr = [j for j in greedy_budg(x_axis,map)]
     plt.plot(x_axis, y_axis)
     plt.plot(x_axis, y_axis_gr)
+    plt.legend(['alg. ewolucji różnicowej','alg. zachłanny'])
     plt.ylabel('zużycie budżetu')
     plt.xlabel('budżet')
     plt.show()
@@ -96,6 +111,6 @@ def plot_fulfill_demand_factor_budget(n, start_budget, end_budget, delta_budget,
 # plot_budget_usage_dim(50)
 # plot_fulfill_demand_factor_dim(50)
 
-# plot_budget_usage_budget(10,100,200,5,ten_dim.roads_map)
-# plot_budget_usage_budget(30,100,200,5,thirty_dim.roads_map)
-plot_budget_usage_budget(50,100,200,5,fifty_dim.roads_map)
+# plot_budget_usage_budget(10,100,3100,500,ten_dim.roads_map)
+# plot_budget_usage_budget(10,100,3100,500,thirty_dim.roads_map)
+plot_budget_usage_budget(10,100,3100,500,fifty_dim.roads_map)

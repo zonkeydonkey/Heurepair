@@ -1,6 +1,6 @@
 import sys
 import copy
-import test.twenty as map
+import test.fifty as map
 # from ten import *
 
 def metrics(map_custom, map_original):
@@ -71,21 +71,20 @@ def greedy_fun(map_original,map_budget):
         print("Wyremontowana liczba dróg: ", num_of_renov_roads)
         print("Wyremontowano połączenia między miastami: ")
         print(renovated)
-    return map_copy
+    return cur_expenses
+    # return map_copy
 
-# def greedy_bud(map_original,map_budget):
-#     x=0
-#     bud=0
-#     x,bud=greedy_fun(map_original,map_budget)
-#     return bud
-#
-# def greedy_budg(budgets, map_original):
-#     x=0
-#     res = []
-#     for bud in budgets:
-#         x,bud_fun = greedy_fun(map_original, bud)
-#         res.append(bud_fun)
-#     return res
+def greedy_bud(map_original,map_budget):
+    bud=0
+    bud=greedy_fun(map_original,map_budget)
+    return bud
+
+def greedy_budg(budgets, map_original):
+    res = []
+    for bud in budgets:
+        bud_fun = greedy_fun(map_original, bud)
+        res.append(bud_fun)
+    return res
 
 greedy_fun(map.roads_map,map.budget)
 

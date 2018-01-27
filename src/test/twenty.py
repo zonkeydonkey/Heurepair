@@ -216,4 +216,4 @@ roads_map = {
     ]
 }
 
-budget = 10000
+budget = 1500
