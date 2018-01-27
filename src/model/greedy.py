@@ -55,7 +55,7 @@ def greedy_fun(map_original,map_budget):
                           "\n Do wyremontowania najkrótszej drogi, należałoby wydać: ", cur_expenses)
                     return 0
                 else:
-                    print("Dysponowano budżetem: ", map_budget, "\n Zużyto: last_expenses")
+                    print("Dysponowano budżetem: ", map_budget, "\n Zużyto: ", last_expenses)
                     return last_expenses
             # print("budget ", cur_expenses)
     return map_copy, cur_expenses
