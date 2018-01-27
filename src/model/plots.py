@@ -84,7 +84,6 @@ def plot_budget_usage_budget(n, start_budget, end_budget, delta_budget, map):
     plt.xlabel('budżet')
     plt.show()
 
-
 def plot_fulfill_demand_factor_budget(n, start_budget, end_budget, delta_budget, map):
     x_axis = np.arange(start_budget, end_budget, delta_budget)
     y_axis = [i[2] for i in run_heuristic_for_budgets(n, x_axis, map)]
@@ -97,6 +96,6 @@ def plot_fulfill_demand_factor_budget(n, start_budget, end_budget, delta_budget,
 # plot_budget_usage_dim(50)
 # plot_fulfill_demand_factor_dim(50)
 
-# plot_budget_usage_budget(10,100,170,5,ten_dim.roads_map)
-plot_budget_usage_budget(30,100,170,5,thirty_dim.roads_map)
-# plot_budget_usage_budget(50,100,150,5,fifty_dim.roads_map)
+# plot_budget_usage_budget(10,100,200,5,ten_dim.roads_map)
+# plot_budget_usage_budget(30,100,200,5,thirty_dim.roads_map)
+plot_budget_usage_budget(50,100,200,5,fifty_dim.roads_map)

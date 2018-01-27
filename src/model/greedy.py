@@ -19,8 +19,9 @@ def greedy_fun(map_original,map_budget):
     map_copy = copy.deepcopy(map_original)
     lengths = map_copy['roads']
     lengths = sorted(lengths, key=lambda k: k['length'])
+    print("dlgosci ", lengths)
     cur_expenses=0
-    used_budget=0
+    last_expenses=0
 
     for i in range(len(lengths)):
         city_A=lengths[i]['city_a']
@@ -35,33 +36,46 @@ def greedy_fun(map_original,map_budget):
 
         cap_between_cities=min(cap_of_city_A, cap_of_city_B)
         lengths[i]['cap']=cap_between_cities
+        # lengths = sorted(lengths, key=lambda k: k['length'])
+        # print("minimalna przepust drogi", cap_between_cities)
+        # print("budgett ", cur_expenses)
+        # print("klekle ", lengths[i]['capacity'])
+        # print("krakra ", map_original['roads'][i]['capacity'])
+        # print("posortowane przepustowosci ", lengths[i]['cap'])
 
-        if cur_expenses<map_budget and map_original['roads'][i]['capacity'] < cap_between_cities:
-            if (cap_between_cities > map_original['roads'][i]['capacity']):
-                newCapacity = (cap_between_cities - map_original['roads'][i]['capacity'])
-                price= newCapacity * lengths[i]['length']
-                print("Debug: before - ", lengths[i]['capacity'])
-                lengths[i]['capacity'] = newCapacity
-                cur_expenses+=price
-                print("Debug: after - ",lengths[i]['capacity'])
-
-    # used_budget=map_budget-cur_expenses
+        last_expenses = cur_expenses
+        if cur_expenses < map_budget and lengths[i]['capacity'] < cap_between_cities:
+            capacity_diff = (cap_between_cities - lengths[i]['capacity'])
+            price= capacity_diff * lengths[i]['length']
+            lengths[i]['capacity'] = lengths[i]['capacity'] + capacity_diff
+            cur_expenses+=price
+            if cur_expenses > map_budget:
+                if last_expenses==0:
+                    print("Budżet jest zbyt mały do wyremontowania czegokolwiek!", "\n Wynosił: ", map_budget, \
+                          "\n Do wyremontowania najkrótszej drogi, należałoby wydać: ", cur_expenses)
+                    return 0
+                else:
+                    print("Dysponowano budżetem: ", map_budget, "\n Zużyto: last_expenses")
+                    return last_expenses
+            # print("budget ", cur_expenses)
     return map_copy, cur_expenses
 
-def greedy_bud(map_original,map_budget):
-    x=0
-    bud=0
-    x,bud=greedy_fun(map_original,map_budget)
-    return bud
+# def greedy_bud(map_original,map_budget):
+#     x=0
+#     bud=0
+#     x,bud=greedy_fun(map_original,map_budget)
+#     return bud
+#
+# def greedy_budg(budgets, map_original):
+#     x=0
+#     res = []
+#     for bud in budgets:
+#         x,bud_fun = greedy_fun(map_original, bud)
+#         res.append(bud_fun)
+#     return res
 
-def greedy_budg(budgets, map_original):
-    x=0
-    res = []
-    for bud in budgets:
-        x,bud_fun = greedy_fun(map_original, bud)
-        res.append(bud_fun)
-    return res
+greedy_fun(map.roads_map,map.budget)
 
-repaired_city,budg = greedy_fun(map.roads_map,map.budget)
+# print("Chwila prawdy:",metrics(repaired_city,map.roads_map))
 
-print("Chwila prawdy:",metrics(repaired_city,map.roads_map))
+# print("zużyty budżet: ", greedy_bud(map.roads_map,map.budget))
