@@ -57,8 +57,8 @@ def plot_obj_fun_dim(n, strategy):
     plt.show()
 
 
-def plot_budget_usage_dim(n):
-    obj_func_vals = [i[1] for i in run_heuristic_diff_evolution(n)]
+def plot_budget_usage_dim(n, strategy):
+    obj_func_vals = [i[1] for i in run_heuristic_diff_evolution(n, strategy)]
     vals_for_greedy = [j for j in run_greedy_bud()]
     available_budget = [k for k in available()]
     plt.plot(dimensions, obj_func_vals)
@@ -70,8 +70,8 @@ def plot_budget_usage_dim(n):
     plt.show()
 
 
-def plot_fulfill_demand_factor_dim(n):
-    obj_func_vals = [i[2] for i in run_heuristic_diff_evolution(n)]
+def plot_fulfill_demand_factor_dim(n, strategy):
+    obj_func_vals = [i[2] for i in run_heuristic_diff_evolution(n, strategy)]
     plt.plot(dimensions, obj_func_vals)
     plt.ylabel('współczynnik pokrycia zapotrzebowania')
     plt.xlabel('wymiar problemu (ilość połączeń)')
@@ -107,8 +107,8 @@ def plot_fulfill_demand_factor_budget(n, start_budget, end_budget, delta_budget,
     plt.xlabel('budżet')
     plt.show()
 
-plot_obj_fun_dim(10, 'rand2bin')
-# plot_budget_usage_dim(50)
+#plot_obj_fun_dim(10, 'rand2bin')
+plot_budget_usage_dim(50, 'rand2bin')
 # plot_fulfill_demand_factor_dim(50)
 
 # plot_budget_usage_budget(10,100,3100,500,ten_dim.roads_map)
