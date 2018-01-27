@@ -1,7 +1,7 @@
 # Heurepair
 
 ## About
-Program calculates the best possible road repair strategy using metaheuristics.
+Program calculates the best possible road repair strategy using metaheuristic.
 
 ## Requirements
 * **python3.6** installed

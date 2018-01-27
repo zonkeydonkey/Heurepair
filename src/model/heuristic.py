@@ -15,7 +15,7 @@ def objective_fun(x, roads_list, budget, max_road_demand):
     cost = cost_fun(x, roads_list)
     heuristic_factor = get_heuristic_factor(roads_list)
     result = cost - heuristic_factor * sum(
-        x[i] - max_road_demand[1]
+        x[i] - max_road_demand[i]
         for i in range(len(x))
     )
 
