@@ -20,9 +20,3 @@ create_max_road_demand_list = lambda map: \
         )
         for road in list(map['roads'])
     ]
-
-def get_heuristic_factor(roads_list):
-    sum = 0
-    for road in roads_list:
-        sum += road[1]
-    return sum / len(roads_list)

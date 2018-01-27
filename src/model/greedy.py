@@ -1,6 +1,6 @@
 import sys
 import copy
-import test.fifty as map
+import data.fifty as map
 # from ten import *
 
 def metrics(map_custom, map_original):

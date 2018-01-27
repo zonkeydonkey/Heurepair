@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import test.two as two_dim
-import test.five as five_dim
-import test.ten as ten_dim
-import test.twenty as twenty_dim
-import test.thirty as thirty_dim
-import test.fourty as fourty_dim
-import test.fifty as fifty_dim
+import data.two as two_dim
+import data.five as five_dim
+import data.ten as ten_dim
+import data.twenty as twenty_dim
+import data.thirty as thirty_dim
+import data.fourty as fourty_dim
+import data.fifty as fifty_dim
 
 from heuristic import run_heuristic_nth_times, run_heuristic_for_budgets
 from greedy import greedy_bud, greedy_budg
@@ -78,9 +78,9 @@ def plot_fulfill_demand_factor_dim(n):
     plt.show()
 
 
-def plot_obj_fun_budget(n, start_budget, end_budget, delta_budget, map):
+def plot_obj_fun_budget(n, start_budget, end_budget, delta_budget, map, strategy):
     x_axis = np.arange(start_budget, end_budget, delta_budget)
-    y_axis = [i[0] for i in run_heuristic_for_budgets(n, x_axis, map)]
+    y_axis = [i[0] for i in run_heuristic_for_budgets(map, x_axis, n, strategy)]
     plt.plot(x_axis, y_axis)
     plt.ylabel('funkcja celu')
     plt.xlabel('budżet')
@@ -88,9 +88,9 @@ def plot_obj_fun_budget(n, start_budget, end_budget, delta_budget, map):
     plt.show()
 
 
-def plot_budget_usage_budget(n, start_budget, end_budget, delta_budget, map):
+def plot_budget_usage_budget(n, start_budget, end_budget, delta_budget, map, strategy):
     x_axis = np.arange(start_budget, end_budget, delta_budget)
-    y_axis = [i[1] for i in run_heuristic_for_budgets(n, x_axis, map)]
+    y_axis = [i[1] for i in run_heuristic_for_budgets(map, x_axis, n, strategy)]
     y_axis_gr = [j for j in greedy_budg(x_axis,map)]
     plt.plot(x_axis, y_axis)
     plt.plot(x_axis, y_axis_gr)
@@ -99,9 +99,9 @@ def plot_budget_usage_budget(n, start_budget, end_budget, delta_budget, map):
     plt.xlabel('budżet')
     plt.show()
 
-def plot_fulfill_demand_factor_budget(n, start_budget, end_budget, delta_budget, map):
+def plot_fulfill_demand_factor_budget(n, start_budget, end_budget, delta_budget, map, strategy):
     x_axis = np.arange(start_budget, end_budget, delta_budget)
-    y_axis = [i[2] for i in run_heuristic_for_budgets(n, x_axis, map)]
+    y_axis = [i[2] for i in run_heuristic_for_budgets(map, x_axis, n, strategy)]
     plt.plot(x_axis, y_axis)
     plt.ylabel('współczynnik pokrycia zapotrzebowania')
     plt.xlabel('budżet')
@@ -113,4 +113,4 @@ def plot_fulfill_demand_factor_budget(n, start_budget, end_budget, delta_budget,
 
 # plot_budget_usage_budget(10,100,3100,500,ten_dim.roads_map)
 # plot_budget_usage_budget(10,100,3100,500,thirty_dim.roads_map)
-plot_budget_usage_budget(10,100,3100,500,fifty_dim.roads_map)
+plot_budget_usage_budget(10,100,3100,500,fifty_dim.roads_map, 'rand2bin')

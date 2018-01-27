@@ -1,6 +1,5 @@
 from scipy.optimize import differential_evolution
-from model import create_roads_list, get_heuristic_factor, create_max_road_demand_list
-
+from map_utils import create_roads_list, create_max_road_demand_list
 
 max_obj_fun_res = 200000
 
@@ -25,6 +24,13 @@ def objective_fun(x, roads_list, budget, max_road_demand):
     return result
 
 
+def get_heuristic_factor(roads_list):
+    sum = 0
+    for road in roads_list:
+        sum += road[1]
+    return sum / len(roads_list)
+
+
 create_bounds = lambda roads_list, max_road_demand: \
     [
         (roads_list[i][0], roads_list[i][0])
@@ -46,15 +52,24 @@ def get_fulfill_demand_factor(x, roads_list, max_road_demand):
     return sum / sum_length
 
 
-def get_avg_x_heuristic(map, budget, n, strategy):
-    sum = 0
+def run_heuristic_nth_times(map, budget, n, strategy):
+    obj_fun_sum = 0
+    capacity_values = 0
     roads_list = create_roads_list(map)
     max_road_demand = create_max_road_demand_list(map)
     bounds = create_bounds(roads_list, max_road_demand)
     for i in range(n):
         result = differential_evolution(objective_fun, bounds, (roads_list, budget, max_road_demand), strategy)
-        sum += result.x
-    return sum / n
+        obj_fun_sum += result.fun
+        capacity_values += result.x
+    capacity_values /= n
+    budget_usage = (cost_fun(capacity_values, roads_list) / budget) * 100
+    return obj_fun_sum / n, budget_usage, get_fulfill_demand_factor(capacity_values, roads_list, max_road_demand), capacity_values
+
+
+def get_avg_x_heuristic(map, budget, n, strategy):
+    result = run_heuristic_nth_times(map, budget, n, strategy)
+    return result[3]
 
 
 def run_strategies(map, budget, n):
@@ -81,24 +96,9 @@ def run_strategies(map, budget, n):
     print("rand1bin: " + str(rand1bin) + ", cost: " + str(cost_fun(rand1bin, roads_list)))
 
 
-def run_heuristic_nth_times(map, budget, n, strategy):
-    obj_fun_sum = 0
-    capacity_values = 0
-    roads_list = create_roads_list(map)
-    max_road_demand = create_max_road_demand_list(map)
-    bounds = create_bounds(roads_list, max_road_demand)
-    for i in range(n):
-        result = differential_evolution(objective_fun, bounds, (roads_list, budget, max_road_demand), strategy)
-        obj_fun_sum += result.fun
-        capacity_values += result.x
-    capacity_values /= n
-    budget_usage = (cost_fun(capacity_values, roads_list) / budget) * 100
-    return obj_fun_sum / n, budget_usage, get_fulfill_demand_factor(capacity_values, roads_list, max_road_demand)
-
-
-def run_heuristic_for_budgets(n, budgets, map):
+def run_heuristic_for_budgets(map, budgets, n, strategy):
     result = []
     for bud in budgets:
-        obj_fun = run_heuristic_nth_times(map, bud, n, 'rand2bin')
+        obj_fun = run_heuristic_nth_times(map, bud, n, strategy)
         result.append(obj_fun)
     return result
