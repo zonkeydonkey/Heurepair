@@ -1,6 +1,6 @@
 import sys
 import copy
-import test.ten as map
+import test.two as map
 # from ten import *
 
 def metrics(map_custom, map_original):
@@ -43,16 +43,17 @@ def greedy_fun(map_original,map_budget):
         # print("krakra ", map_original['roads'][i]['capacity'])
         # print("posortowane przepustowosci ", lengths[i]['cap'])
 
+    for i in range(len(lengths)):
         last_expenses = cur_expenses
-        if cur_expenses < map_budget and lengths[i]['capacity'] < cap_between_cities:
-            capacity_diff = (cap_between_cities - lengths[i]['capacity'])
+        if cur_expenses < map_budget and lengths[i]['capacity'] < lengths[i]['cap']:
+            capacity_diff = (lengths[i]['cap'] - lengths[i]['capacity'])
             price= capacity_diff * lengths[i]['length']
             lengths[i]['capacity'] = lengths[i]['capacity'] + capacity_diff
             cur_expenses+=price
             if cur_expenses > map_budget:
                 if last_expenses==0:
                     print("Budżet jest zbyt mały do wyremontowania czegokolwiek!", "\n Wynosił: ", map_budget, \
-                          "\n Do wyremontowania najkrótszej drogi, należałoby wydać: ", cur_expenses)
+                            "\n Do wyremontowania najkrótszej drogi, należałoby wydać: ", cur_expenses)
                     return 0
                 else:
                     print("Dysponowano budżetem: ", map_budget, "\n Zużyto: ", last_expenses)
