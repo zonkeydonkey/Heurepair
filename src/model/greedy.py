@@ -1,6 +1,6 @@
 import sys
 import copy
-import test.two as map
+import test.twenty as map
 # from ten import *
 
 def metrics(map_custom, map_original):
@@ -19,10 +19,10 @@ def greedy_fun(map_original,map_budget):
     map_copy = copy.deepcopy(map_original)
     lengths = map_copy['roads']
     lengths = sorted(lengths, key=lambda k: k['length'])
-    print("dlgosci ", lengths)
     cur_expenses=0
     last_expenses=0
-
+    num_of_renov_roads=0
+    renovated=[]
     for i in range(len(lengths)):
         city_A=lengths[i]['city_a']
         city_B=lengths[i]['city_b']
@@ -47,19 +47,31 @@ def greedy_fun(map_original,map_budget):
         last_expenses = cur_expenses
         if cur_expenses < map_budget and lengths[i]['capacity'] < lengths[i]['cap']:
             capacity_diff = (lengths[i]['cap'] - lengths[i]['capacity'])
-            price= capacity_diff * lengths[i]['length']
+            price = capacity_diff * lengths[i]['length']
             lengths[i]['capacity'] = lengths[i]['capacity'] + capacity_diff
             cur_expenses+=price
+            num_of_renov_roads += 1
+            renovated.append([lengths[i]['city_a'], lengths[i]['city_b']])
             if cur_expenses > map_budget:
+                num_of_renov_roads -= 1
                 if last_expenses==0:
                     print("Budżet jest zbyt mały do wyremontowania czegokolwiek!", "\n Wynosił: ", map_budget, \
                             "\n Do wyremontowania najkrótszej drogi, należałoby wydać: ", cur_expenses)
                     return 0
                 else:
+                    renovated.pop(num_of_renov_roads)
                     print("Dysponowano budżetem: ", map_budget, "\n Zużyto: ", last_expenses)
+                    print("Wyremontowana liczba dróg: ", num_of_renov_roads)
+                    print("Wyremontowano połączenia między miastami: ")
+                    print(renovated)
                     return last_expenses
-            # print("budget ", cur_expenses)
-    return map_copy, cur_expenses
+    if cur_expenses > 0:
+        print('Udało się wyremontować wszystkie drogi!')
+        print("Dysponowano budżetem: ", map_budget, "\n Zużyto: ", cur_expenses)
+        print("Wyremontowana liczba dróg: ", num_of_renov_roads)
+        print("Wyremontowano połączenia między miastami: ")
+        print(renovated)
+    return map_copy
 
 # def greedy_bud(map_original,map_budget):
 #     x=0
