@@ -1,7 +1,7 @@
 from scipy.optimize import differential_evolution
 from map_utils import create_roads_list, create_max_road_demand_list
 
-max_obj_fun_res = 200000
+max_obj_fun_res = 20000000
 
 
 def cost_fun(x, roads_list):
@@ -13,14 +13,15 @@ def cost_fun(x, roads_list):
 
 def objective_fun(x, roads_list, budget, max_road_demand):
     cost = cost_fun(x, roads_list)
+    if cost > budget:
+        return max_obj_fun_res
+
     heuristic_factor = get_heuristic_factor(roads_list)
-    result = cost - heuristic_factor * sum(
-        x[i] - max_road_demand[i]
+    result = cost + heuristic_factor * sum(
+        max_road_demand[i] - x[i]
         for i in range(len(x))
     )
 
-    if cost > budget:
-        return max_obj_fun_res
     return result
 
 
