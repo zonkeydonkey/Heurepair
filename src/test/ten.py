@@ -60,7 +60,7 @@ roads_map = {
         {
             'city_a': "pcim",
             'city_b': "krakow",
-            'capacity': 6.56,
+            'capacity': 54.9,
             'length': 30.2
         },
 
