@@ -106,11 +106,3 @@ def plot_fulfill_demand_factor_budget(n, start_budget, end_budget, delta_budget,
     plt.ylabel('współczynnik pokrycia zapotrzebowania')
     plt.xlabel('budżet')
     plt.show()
-
-#plot_obj_fun_dim(10, 'rand2bin')
-plot_budget_usage_dim(50, 'rand2bin')
-# plot_fulfill_demand_factor_dim(50)
-
-# plot_budget_usage_budget(10,100,3100,500,ten_dim.roads_map)
-# plot_budget_usage_budget(10,100,3100,500,thirty_dim.roads_map)
-#plot_budget_usage_budget(1,100,3100,500,fifty_dim.roads_map, 'rand2bin')

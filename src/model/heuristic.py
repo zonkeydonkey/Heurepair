@@ -32,7 +32,7 @@ def get_heuristic_factor(roads_list):
     return sum / len(roads_list)
 
 
-create_bounds = lambda roads_list, max_road_demand: \
+create_bounds = lambda roads_list, max_road_demand, budget: \
     [
         (roads_list[i][0], roads_list[i][0])
         if (roads_list[i][0] >= max_road_demand[i])
@@ -58,7 +58,7 @@ def run_heuristic_nth_times(map, budget, n, strategy):
     capacity_values = 0
     roads_list = create_roads_list(map)
     max_road_demand = create_max_road_demand_list(map)
-    bounds = create_bounds(roads_list, max_road_demand)
+    bounds = create_bounds(roads_list, max_road_demand, budget)
     for i in range(n):
         result = differential_evolution(objective_fun, bounds, (roads_list, budget, max_road_demand), strategy)
         obj_fun_sum += result.fun
